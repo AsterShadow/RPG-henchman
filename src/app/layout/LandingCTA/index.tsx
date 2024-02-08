@@ -1,9 +1,9 @@
 "use client";
 
 import Image from 'next/image';
-import { Section } from '../../../app/page';
-import Button from '../Button';
+import { Section } from '../../../pages';
 import images from '@/assets/images';
+import Button from '@/components/Button';
 
 
 const SectionComponent: React.FC<Section> = ({ id, title, image, text, rotationDegree }) => {

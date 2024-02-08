@@ -1,9 +1,9 @@
 import Image, { StaticImageData } from 'next/image';
-import Navbar from './components/Header/Header';
 
 import images from '@/assets/images';
-import SectionComponent from './components/LandingCTA';
-import Footer from './components/Footer/Footer';
+import Footer from '../app/layout/Footer/Footer';
+import Navbar from '../app/layout/Header/Header';
+import SectionComponent from '../app/layout/LandingCTA';
 
 
 export interface Section {
@@ -50,13 +50,13 @@ export default function Home() {
       title: 'OneShots',
       image: images.map,
       text: 'Create original One shots for your TTRPG campaigns!',
-      rotationDegree: 240,
+      rotationDegree: 250,
     }
   ];
   return (
     <main className="flex min-h-screen flex-col items-center">
       <Navbar />
-      <div className='w-full pt-24 flex flex-col gap-48 lg:gap-96 pb-20'>
+      <div className='w-full py-24 flex flex-col gap-48 lg:gap-96 pb-20'>
         {sections.map((section) => (
           <SectionComponent key={section.id} {...section} />
         ))}
