@@ -11,6 +11,14 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
+  const navLinks = [
+    { href: '/create/monsters', title: 'Monsters' },
+    { href: '/create/items', title: 'Items' },
+    { href: '/create/characters', title: 'Characters' },
+    { href: '/create/locations', title: 'Locations' },
+    { href: '/create/one-shots', title: 'One Shots' },
+  ];
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -26,13 +34,14 @@ const Navbar = () => {
 
   return (
     <nav className="flex items-center justify-between flex-wrap lg:gap-20 lg:justify-normal p-8 w-full">
-      <Image src={images.logo} alt="RPG-Henchman logo" />
+      <Link href='/'>
+        <Image src={images.logo} alt="RPG-Henchman logo" />
+      </Link>
+
       <div className='hidden lg:block lg:flex lg:gap-4 text-xl font-headers'>
-        <Link href='#'><span>Monsters</span></Link>
-        <Link href='#'><span>Items</span></Link>
-        <Link href='#'><span>Characters</span></Link>
-        <Link href='#'><span>Locations</span></Link>
-        <Link href='#'><span>One Shots</span></Link>
+        {navLinks.map((link) => (
+          <Link href={link.href} key={link.title}><span>{link.title}</span></Link>
+        ))}
       </div>
       <div className='block lg:hidden'>
         <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="flex items-center px-3 py-2 text-2xl font-headers">
@@ -43,14 +52,12 @@ const Navbar = () => {
       <CSSTransition in={isMobileMenuOpen} timeout={300} classNames="menu-slide" unmountOnExit nodeRef={menuRef}>
         <div className="fixed top-0 right-0 h-full w-3/5 bg-dark shadow-lg z-50" ref={menuRef}>
           <button onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-3 py-4 font-headers">
-            <Image src={images.close} alt="close icon" className='w-10'/>
+            <Image src={images.close} alt="close icon" className='w-10' />
           </button>
           <div className="flex flex-col items-start p-4 font-headers text-2xl gap-4 text-gold">
-            <Link href='#'><span>Monsters</span></Link>
-            <Link href='#'><span>Items</span></Link>
-            <Link href='#'><span>Characters</span></Link>
-            <Link href='#'><span>Locations</span></Link>
-            <Link href='#'><span>One Shots</span></Link>
+            {navLinks.map((link) => (
+              <Link href={link.href} key={link.title}><span>{link.title}</span></Link>
+            ))}
           </div>
         </div>
       </CSSTransition>
