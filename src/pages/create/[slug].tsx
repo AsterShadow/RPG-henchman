@@ -14,17 +14,17 @@ const CreatePage = () => {
   const section = sections.find((section) => section.slug === slug);
 
   return (
-    <div>
+    <div className='flex min-h-screen flex-col'>
       <Navbar />
-      {section ?
-        <>
-          <SectionComponent {...section} />
-        </>
-        :
-        <div>ERROR404</div>
-      }
-
-
+      <div className='w-full py-24 flex flex-col gap-48 lg:gap-96'>
+        {section ?
+          <>
+            <SectionComponent {...section} />
+          </>
+          :
+          <div>ERROR404</div>
+        }
+      </div>
     </div>
   );
 };

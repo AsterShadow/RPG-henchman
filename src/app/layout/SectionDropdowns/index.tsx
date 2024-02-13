@@ -1,9 +1,14 @@
 "use client";
+
+import Dropdown from '@/components/Dropdown';
 import React from 'react'
 
 const SectionDropDowns = () => {
   return (
-    <div>index</div>
+    <div>
+      <Dropdown />
+      <Dropdown />
+    </div>
   )
 }
 

@@ -36,7 +36,6 @@ const SectionComponent: React.FC<Section> = ({ index, slug, title, image, text, 
                     </>
                     :
                     <SectionDropDowns />
-
                 }
 
             </div>

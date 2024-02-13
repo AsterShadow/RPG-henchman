@@ -7,6 +7,7 @@ import characters from '../../public/images/character-image_nobg.png';
 import items from '../../public/images/item-image_nobg.png';
 import triangle from '../../public/images/triangle.svg';
 import map from '../../public/images/map_nobg.png';
+import dropdown from '../../public/images/dropdown.svg';
 
 
 const images = {
@@ -19,6 +20,7 @@ const images = {
   items,
   triangle,
   map,
+  dropdown,
 };
 
 export default images;
