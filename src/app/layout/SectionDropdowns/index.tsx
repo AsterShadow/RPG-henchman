@@ -1,15 +1,26 @@
 "use client";
 
+import React, { useEffect, useState } from 'react';
 import Dropdown from '@/components/Dropdown';
-import React from 'react'
+import { CATEGORY_OPTIONS } from '@/constants/categoryOptions';
 
-const SectionDropDowns = () => {
+interface SectionDropDownsProps {
+  category: string;
+}
+
+const SectionDropDowns: React.FC<SectionDropDownsProps> = ({ category }) => {
+  const options = CATEGORY_OPTIONS[category];
+
+  if (!options) {
+    return <div>Invalid category</div>;
+  }
   return (
     <div>
-      <Dropdown />
-      <Dropdown />
+      {Object.entries(options).map(([key, options]) => (
+        <Dropdown key={key} options={options} label={key.charAt(0).toUpperCase() + key.slice(1)} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
 export default SectionDropDowns;

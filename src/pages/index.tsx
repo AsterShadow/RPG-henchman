@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center">
       <Navbar />
-      <div className='w-full py-24 flex flex-col gap-48 lg:gap-96 pb-20'>
+      <div className='w-full flex flex-col gap-48 lg:gap-96 py-[15rem]'>
         {sections.map((section, index) => (
           <SectionComponent key={index} {...section} />
         ))}

@@ -1,0 +1,76 @@
+export const CATEGORY_OPTIONS = {
+  monsters: {
+    cr: [
+      "1/8",
+      "1/4",
+      "1/2",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "15",
+      "17",
+      "20",
+      "25",
+      "30",
+    ],
+    size: ["Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan"],
+    type: [
+      "Aberration",
+      "Beast",
+      "Celestial",
+      "Construct",
+      "Dragon",
+      "Elemental",
+      "Fey",
+      "Fiend",
+      "Giant",
+      "Humanoid",
+      "Monstrosity",
+      "Ooze",
+      "Plant",
+      "Undead",
+    ],
+    alignment: [
+      "Lawful Good",
+      "Neutral Good",
+      "Chaotic Good",
+      "Lawful Neutral",
+      "Neutral",
+      "Chaotic Neutral",
+      "Lawful Evil",
+      "Neutral Evil",
+      "Chaotic Evil",
+    ],
+    environment: [
+      "Arctic",
+      "Coast",
+      "Desert",
+      "Forest",
+      "Grassland",
+      "Mountain",
+      "Swamp",
+      "Underdark",
+      "Underwater",
+      "Urban",
+    ],
+  },
+  items: {
+    // Define item options
+  },
+  characters: {
+    // Define character options
+  },
+  locations: {
+    // Define location options
+  },
+  // Add more categories as needed
+};

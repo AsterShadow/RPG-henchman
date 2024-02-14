@@ -16,13 +16,20 @@ const CreatePage = () => {
   return (
     <div className='flex min-h-screen flex-col'>
       <Navbar />
-      <div className='w-full py-24 flex flex-col gap-48 lg:gap-96'>
+      <div className='w-full flex flex-col gap-48 lg:gap-96 py-[15rem]'>
         {section ?
           <>
             <SectionComponent {...section} />
           </>
           :
-          <div>ERROR404</div>
+          <div className='w-full flex flex-col items-center justify-center'>
+            <div className='text-2xl'>
+              ERROR404
+            </div>
+            <div>
+              PAGE NOT FOUND
+            </div>
+          </div>
         }
       </div>
     </div>

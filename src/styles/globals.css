@@ -32,23 +32,24 @@ body {
   box-sizing: border-box;
   overflow-x: hidden;
 }
-.custom-scrollbar {
-  scrollbar-width: thin; /* "auto" or "thin" */
-  scrollbar-color: #eeae4d #1d2727; /* thumb and track color */
-}
+
+/* .custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #eeae4d #1d2727;
+} */
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 8px; /* Width of the scrollbar */
+  width: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #1d2727; /* Track color */
+  background: #1d2727;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #eeae4d; /* Handle color */
+  background: #eeae4d;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #eeae4d; /* Handle color on hover */
+  background: #eeae4d;
 }
