@@ -14,7 +14,7 @@ const SectionComponent: React.FC<Section> = ({ index, slug, title, image, text, 
     const router = useRouter();
     const isHomePage = router.pathname === '/';
     return (
-        <div className={`flex flex-col items-center justify-center gap-8 lg:justify-around ${isEven && isHomePage ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
+        <div className={`flex flex-col items-center justify-center gap-8 lg:justify-between ${isEven && isHomePage ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
             {image && (
                 <div className="flex items-center justify-center w-80 h-80 mx-auto lg:w-92 h-92 ">
                     <div className="w-[150px] lg:w-[350px] absolute" style={{ transform: `rotate(${rotationDegree}deg)` }}>

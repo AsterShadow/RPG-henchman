@@ -9,13 +9,14 @@ export default function Home() {
 
 
   return (
-    <main className="flex min-h-screen flex-col items-center">
+    <main className="container">
       <Navbar />
       <div className='w-full flex flex-col gap-48 lg:gap-96 py-[15rem]'>
         {sections.map((section, index) => (
           <SectionComponent key={index} {...section} />
         ))}
       </div>
+
       <Footer />
     </main>
   )

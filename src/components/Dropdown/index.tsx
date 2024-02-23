@@ -9,7 +9,7 @@ interface DropdownProps {
     label: string;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, label }) => {
+const Dropdown: React.FC<DropdownProps> = ({ options, label}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('');
     const dropdownRef = useRef<HTMLDivElement>(null);

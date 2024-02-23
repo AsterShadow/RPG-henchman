@@ -12,11 +12,11 @@ const Navbar = () => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const navLinks = [
-    { href: '/create/monsters', title: 'Monsters' },
-    { href: '/create/items', title: 'Items' },
-    { href: '/create/characters', title: 'Characters' },
-    { href: '/create/locations', title: 'Locations' },
-    { href: '/create/one-shots', title: 'One Shots' },
+    { href: '/create/monster', title: 'Monster' },
+    { href: '/create/item', title: 'Item' },
+    { href: '/create/character', title: 'Character' },
+    { href: '/create/location', title: 'Location' },
+    // { href: '/create/one-shot', title: 'One Shot' },
   ];
 
   useEffect(() => {
