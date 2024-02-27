@@ -5,6 +5,7 @@ import React, { ReactNode } from 'react';
 
 interface ButtonProps {
     children: ReactNode;
+    onClick?: any;
 }
 
 const Button: React.FC<ButtonProps> = ({ children }) => {
