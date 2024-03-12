@@ -2,8 +2,8 @@ import React from 'react'
 
 const SectionChat = () => {
   return (
-    <div>
-      
+    <div className='w-full'>
+
     </div>
   )
 }

@@ -1,8 +1,10 @@
 "use client";
 
+import Footer from '@/app/layout/Footer/Footer';
 import Navbar from '@/app/layout/Header/Header';
 import SectionChat from '@/app/layout/SectionChat';
 import SectionComponent from '@/app/layout/SectionHero';
+import StatBlockComponent from '@/components/StatBlock';
 import { sections } from '@/constants/section';
 import { useRouter } from 'next/router';
 
@@ -19,7 +21,8 @@ const CreatePage = () => {
           {section ?
             <>
               <SectionComponent {...section} />
-              <SectionChat />
+              <StatBlockComponent />
+              {/* <SectionChat /> */}
             </>
             :
             <div className='w-full flex flex-col items-center justify-center'>
@@ -32,6 +35,7 @@ const CreatePage = () => {
             </div>
           }
         </div>
+        <Footer />
     </main>
   );
 };
