@@ -20,7 +20,7 @@ const SectionDropDowns: React.FC<SectionDropDownsProps> = ({ category }) => {
       {Object.entries(options).map(([key, options]) => (
         <Dropdown key={key} options={options} label={key.charAt(0).toUpperCase() + key.slice(1)} />
       ))}
-      <div>
+      <div className='pt-8'>
         <Button>
           Generate {category}
         </Button>
