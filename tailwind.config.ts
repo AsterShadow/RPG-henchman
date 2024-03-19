@@ -13,6 +13,9 @@ const config: Config = {
         gold: "#EEAE4D",
         cream: "#FFE99C",
         light: "#F5F5F5",
+        statBlockRed: "#7A200D",
+        statBlockBG: "#FDF1DC",
+        statBlockOrange: "#E69A28",
       },
     },
     fontFamily: {

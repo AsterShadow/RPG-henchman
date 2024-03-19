@@ -33,7 +33,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed flex items-center justify-between flex-wrap bg-dark lg:gap-20 lg:justify-normal p-8 w-full z-10">
+    <nav className="fixed flex items-center justify-between flex-wrap w-full z-10 p-8 lg:gap-20 lg:justify-normal lg:backdrop-opacity-75 lg:backdrop-blur-sm">
       <Link href='/'>
         <Image src={images.logo} alt="RPG-Henchman logo" />
       </Link>
