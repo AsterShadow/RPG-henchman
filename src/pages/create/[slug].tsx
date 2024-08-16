@@ -12,20 +12,18 @@ import { useState } from 'react';
 const CreatePage = () => {
   const router = useRouter();
   const { slug } = router.query;
-  const [messages, setMessages] = useState<string[]>([]);
 
   const section = sections.find((section) => section.slug === slug);
   //handle loading state instead of throwing 404 error
   return (
-    <main className="container">
+    <main className="">
       <Navbar />
-        <div className='w-full flex flex-col gap-48 py-[8rem] lg:py-[15rem]'>
+        <div className='container w-full flex flex-col min-h-[100dvh] gap-48 py-[8rem] lg:py-[15rem]'>
           {section ?
-            <>
+            <div className='w-full flex flex-col gap-48'>
               <SectionComponent {...section} />
-              <StatBlockComponent />
-              {/* <SectionChat /> */}
-            </>
+              {/* <StatBlockComponent /> */}
+            </div>
             :
             <div className='w-full flex flex-col items-center justify-center'>
               <div className='text-2xl'>

@@ -1,39 +1,66 @@
-// import { Monster, MonstersResponse } from "@/types/monster";
+import { MonstersResponse } from "@/types/monster";
 
-// const BASE_URL = "https://api.open5e.com/";
+const BASE_URL = "https://api.open5e.com/";
 
-// async function fetchAllMonsters(): Promise<Monster[]> {
-//   let url: string | null = `${BASE_URL}monsters/`;
-//   let monsters: Monster[] = [];
+async function fetchMonstersByPage(
+  page: number,
+  maxRetries: number = 3
+): Promise<StatBlockProps[]> {
+  const url = `${BASE_URL}monsters/?page=${page}`;
+  let retries = 0;
+  while (retries < maxRetries) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Failed to load data");
+      const data: MonstersResponse = await response.json();
+      return data.results;
+    } catch (error) {
+      console.error(`Attempt ${retries + 1} failed for page ${page}: ${error}`);
+      retries += 1;
+      if (retries >= maxRetries) {
+        console.warn(
+          `Skipping page ${page} after ${maxRetries} failed attempts.`
+        );
+        return [];
+      }
+    }
+  }
+  return [];
+}
 
-//   while (url !== null) {
-//     const response = await fetch(url);
-//     if (!response.ok) throw new Error("Failed to load data");
-//     const data: MonstersResponse = await response.json();
-//     monsters = monsters.concat(data.results);
-//     url = data.next;
-//   }
+async function fetchAllMonsters(
+  startPage: number = 1,
+  maxRetries: number = 3
+): Promise<StatBlockProps[]> {
+  let monsters: StatBlockProps[] = [];
+  let currentPage = startPage;
 
-//   return monsters;
-// }
+  while (true) {
+    try {
+      const pageMonsters = await fetchMonstersByPage(currentPage, maxRetries);
+      if (pageMonsters.length === 0 && currentPage !== startPage) {
+        break;
+      }
+      monsters = monsters.concat(pageMonsters);
+      currentPage += 1;
+    } catch (error) {
+      console.error(`Failed to fetch page ${currentPage}: ${error}`);
+      currentPage += 1;
+    }
+  }
 
-// export const fetchUniqueAttributes = async (attribute: keyof Monster) => {
-//   const monsters = await fetchAllMonsters();
-//   const uniqueAttributes = Array.from(
-//     new Set(monsters.map((monster) => monster[attribute]))
-//   ).sort() as string[];
-//   return uniqueAttributes;
-// };
+  return monsters;
+}
+async function fetchTotalPages(): Promise<number> {
+  const response = await fetch(`${BASE_URL}monsters/`);
+  if (!response.ok) throw new Error("Failed to load data");
+  const data = await response.json();
 
-// export const fetchUniqueCRs = async () =>
-//   fetchUniqueAttributes("challenge_rating");
-// export const fetchUniqueSizes = async () => fetchUniqueAttributes("size");
-// export const fetchUniqueTypes = async () => fetchUniqueAttributes("type");
-// export const fetchUniqueAlignments = async () =>
-//   fetchUniqueAttributes("alignment");
+  const totalItems = data.count;
+  const itemsPerPage = data.results.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-// export const fetchUniqueEnvironments = async () => {
-//   const monsters = await fetchAllMonsters();
-//   const environments = monsters.flatMap((monster) => monster.environments);
-//   return Array.from(new Set(environments)).sort();
-// };
+  return totalPages;
+}
+
+export { fetchAllMonsters, fetchMonstersByPage, fetchTotalPages };

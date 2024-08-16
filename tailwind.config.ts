@@ -22,6 +22,7 @@ const config: Config = {
       sans: ['Montserrat', 'sans-serif'],
       serif: ['EB Garamond', 'serif'],
       headers: ['EB Garamond', 'serif'],
+      statblockHeader: ['Merriweather', 'serif'],
     },
   },
   plugins: [],

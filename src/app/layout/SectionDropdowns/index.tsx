@@ -18,7 +18,8 @@ const SectionDropDowns: React.FC<SectionDropDownsProps> = ({ category }) => {
   return (
     <div>
       {Object.entries(options).map(([key, options]) => (
-        <Dropdown key={key} options={options} label={key.charAt(0).toUpperCase() + key.slice(1)} />
+        <></>
+        // <Dropdown key={key} options={options} placeholder={key.charAt(0).toUpperCase() + key.slice(1)} onChange={()=>handleChange()} />
       ))}
       <div className='pt-8'>
         <Button>

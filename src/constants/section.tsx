@@ -38,12 +38,4 @@ export const sections: Section[] = [
         text: 'Create fantastic locations for your RPG World!',
         rotationDegree: 320,
     },
-    // {
-    //     index: 5,
-    //     slug: 'one-shot',
-    //     title: 'One Shot',
-    //     image: images.map,
-    //     text: 'Create original One shots for your TTRPG campaigns!',
-    //     rotationDegree: 250,
-    // }
 ];

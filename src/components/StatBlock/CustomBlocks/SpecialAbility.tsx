@@ -1,10 +1,12 @@
+"use client";
 import React from 'react';
 
 interface SpecialAbilitiesProps {
-  abilities: SpecialAbility[];
+  abilities: SpecialAbility[] | undefined;
+  editMode: boolean;
 }
 
-const SpecialAbilities: React.FC<SpecialAbilitiesProps> = ({ abilities }) => {
+const SpecialAbilities: React.FC<SpecialAbilitiesProps> = ({ abilities, editMode }) => {
   if (!abilities || abilities.length === 0) return null;
 
   return (

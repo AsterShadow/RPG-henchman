@@ -1,178 +1,20 @@
-import React from 'react';
-import CreatureHeading from './CustomBlocks/CreatureHeading';
-import PropertyLine from './CustomBlocks/PropertyLine';
+"use client";
+import React, { useEffect, useState } from 'react';
 import AbilitiesBlock from './CustomBlocks/AbilitiesBlock';
 import TaperedRule from './CustomBlocks/TaperedRule';
 import SpecialAbility from './CustomBlocks/SpecialAbility';
 import Action from './CustomBlocks/Action';
 import Description from './CustomBlocks/Description';
+import PropertyLineString from './CustomBlocks/PropertyLineString';
+import PropertyLineNb from './CustomBlocks/PropertyLineNb';
 
-const StatBlockComponent: React.FC<StatBlockProps> = () => {
+interface StatBlockComponentProps {
+  monster: StatBlockProps;
+  editMode: boolean;
+}
 
-  const monster ={
-    "slug": "beli",
-            "desc": "_These small, winter faeries are vicious and deadly. With their pale skin and translucent wings, they blend perfectly into their snowy environment; only their beady black eyes stand out against the snow and ice._  \nThese malevolent ice-sprites are a plague upon the people of snowy climates, ambushing unwary prey with icy arrows and freezing spell-like powers.  \n**Servants of the North Wind.** Known as “patzinaki” in some dialects of Dwarvish, the beli are the servants of winter gods and venerate the north wind as Boreas and other gods of darker aspects. They are frequent allies with the fraughashar.  \n**Feast Crashers.** Beli especially delight in disrupting feasts and making off with the holiday cakes—the least deadly of their malicious pranks.  \n**Fear of Druids.** They have an irrational fear of northern druids and their snow bear companions.",
-            "name": "Beli",
-            "size": "Small",
-            "type": "Fey",
-            "subtype": "",
-            "group": null,
-            "alignment": "neutral evil",
-            "armor_class": 15,
-            "armor_desc": "natural armor",
-            "hit_points": 45,
-            "hit_dice": "10d6+10",
-            "speed": {
-                "walk": 30,
-                "fly": 30
-            },
-            "strength": 11,
-            "dexterity": 16,
-            "constitution": 12,
-            "intelligence": 8,
-            "wisdom": 11,
-            "charisma": 14,
-            "strength_save": null,
-            "dexterity_save": 5,
-            "constitution_save": null,
-            "intelligence_save": null,
-            "wisdom_save": null,
-            "charisma_save": null,
-            "perception": 4,
-            "skills": {
-                "perception": 4,
-                "stealth": 5
-            },
-            "damage_vulnerabilities": "fire",
-            "damage_resistances": "",
-            "damage_immunities": "cold",
-            "condition_immunities": "",
-            "senses": "darkvision 60 ft., passive Perception 14",
-            "languages": "Common, Dwarvish, Giant",
-            "challenge_rating": "2",
-            "cr": 2.0,
-            "actions": [
-                {
-                    "name": "Ice Dagger",
-                    "desc": "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 5 (1d4 + 3) piercing damage plus 2 (1d4) cold damage.",
-                    "attack_bonus": 5,
-                    "damage_dice": "1d4"
-                },
-                {
-                    "name": "Icy Shortbow",
-                    "desc": "Ranged Weapon Attack: +5 to hit, range 80/320 ft., one target. Hit: 5 (1d4 + 3) piercing damage plus 2 (1d4) cold damage, and the target must make a successful DC 13 Constitution saving throw or gain 2 levels of exhaustion from the arrow's icy chill. If the save succeeds, the target also becomes immune to further exhaustion from beli arrows for 24 hours (but any levels of exhaustion already gained remain in effect). A character who gains a sixth level of exhaustion doesn't die automatically but drops to 0 hit points and must make death saving throws as normal. The exhaustion lasts until the target recovers fully from the cold damage.",
-                    "attack_bonus": 5,
-                    "damage_dice": "1d4"
-                }
-            ],
-            "bonus_actions": null,
-            "reactions": null,
-            "legendary_desc": "",
-            "legendary_actions": null,
-            "special_abilities": [
-                {
-                    "name": "Arctic Hunter",
-                    "desc": "Beli have advantage on Dexterity (Stealth) checks and Wisdom (Perception) checks made in icy, natural surroundings."
-                },
-                {
-                    "name": "Cold Regeneration",
-                    "desc": "As long as the temperature is below freezing, the beli regains 3 hit points at the start of its turn. If the beli takes fire damage, this trait doesn't function at the start of the beli's next turn. The beli dies only if it starts its turn with 0 hit points and it doesn't regenerate."
-                },
-                {
-                    "name": "Flyby",
-                    "desc": "The beli doesn't provoke an opportunity attack when it flies out of an enemy's reach."
-                },
-                {
-                    "name": "Innate Spellcasting",
-                    "desc": "the beli's innate spellcasting ability is Charisma (spell save DC 12, +4 to hit with spell attacks). It can innately cast the following spells, requiring no material components:\n\nat will: invisibility\n\n3/day: chill touch"
-                }
-            ],
-            "spell_list": [],
-            "environments": [],
-            "description": "Like most canids, wolves have a high body, long legs, broad skull tapering to a narrow muzzle. The tail is bushy and coat has a thick, dense underfur. Colors vary from light to dark gray with black and white interspersed, to some individuals being solid black and solid white.",
-  };
-
-  // const monster = {
-  //   "slug": "winter-wolf",
-  //   "desc": "The arctic-dwelling **winter wolf** is as large as a dire wolf but has snow-white fur and pale blue eyes. Frost giants use these evil creatures as guards and hunting companions, putting the wolves'deadly breath weapon to use against their foes. Winter wolves communicate with one another using growls and barks, but they speak Common and Giant well enough to follow simple conversations.",
-  //   "name": "Winter Wolf",
-  //   "size": "Large",
-  //   "type": "Monstrosity",
-  //   "subtype": "",
-  //   "group": "Miscellaneous Creatures",
-  //   "alignment": "neutral evil",
-  //   "armor_class": 13,
-  //   "armor_desc": "natural armor",
-  //   "hit_points": 75,
-  //   "hit_dice": "10d10+20",
-  //   "speed": {
-  //     "walk": 50
-  //   },
-  //   "strength": 18,
-  //   "dexterity": 13,
-  //   "constitution": 14,
-  //   "intelligence": 7,
-  //   "wisdom": 12,
-  //   "charisma": 8,
-  //   "strength_save": 4,
-  //   "dexterity_save": null,
-  //   "constitution_save": null,
-  //   "intelligence_save": null,
-  //   "wisdom_save": null,
-  //   "charisma_save": null,
-  //   "perception": 5,
-  //   "skills": {
-  //     "perception": 5,
-  //     "stealth": 3
-  //   },
-  //   "damage_vulnerabilities": "",
-  //   "damage_resistances": "acid, cold, fire, lightning, thunder; bludgeoning, piercing, and slashing from nonmagical attacks not made with silvered weapons",
-  //   "damage_immunities": "necrotic, poison",
-  //   "condition_immunities": "charmed, exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained",
-  //   "senses": "passive Perception 15",
-  //   "languages": "Common, Giant, Winter Wolf",
-  //   "challenge_rating": "3",
-  //   "cr": 3.0,
-  //   "actions": [
-  //     {
-  //       "name": "Bite",
-  //       "desc": "Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 11 (2d6 + 4) piercing damage. If the target is a creature, it must succeed on a DC 14 Strength saving throw or be knocked prone.",
-  //       "attack_bonus": 6,
-  //       "damage_dice": "2d6",
-  //       "damage_bonus": 4
-  //     },
-  //     {
-  //       "name": "Cold Breath (Recharge 5-6)",
-  //       "desc": "The wolf exhales a blast of freezing wind in a 15-foot cone. Each creature in that area must make a DC 12 Dexterity saving throw, taking 18 (4d8) cold damage on a failed save, or half as much damage on a successful one.",
-  //       "attack_bonus": 0,
-  //       "damage_dice": "4d8"
-  //     }
-  //   ],
-  //   "bonus_actions": null,
-  //   "reactions": null,
-  //   "legendary_desc": "",
-  //   "legendary_actions": null,
-  //   "special_abilities": [
-  //     {
-  //       "name": "Keen Hearing and Smell",
-  //       "desc": "The wolf has advantage on Wisdom (Perception) checks that rely on hearing or smell."
-  //     },
-  //     {
-  //       "name": "Pack Tactics",
-  //       "desc": "The wolf has advantage on an attack roll against a creature if at least one of the wolf's allies is within 5 ft. of the creature and the ally isn't incapacitated."
-  //     },
-  //     {
-  //       "name": "Snow Camouflage",
-  //       "desc": "The wolf has advantage on Dexterity (Stealth) checks made to hide in snowy terrain."
-  //     }
-  //   ],
-  //   "spell_list": [],
-  //   "environments": [
-  //     "Arctic"
-  //   ],
-  //   "description": "Like most canids, wolves have a high body, long legs, broad skull tapering to a narrow muzzle. The tail is bushy and coat has a thick, dense underfur. Colors vary from light to dark gray with black and white interspersed, to some individuals being solid black and solid white.",
-  // };
-  const speedText = Object.entries(monster.speed).map(([key, value]) => `${key} ${value}`).join(', ');
+const StatBlockComponent: React.FC<StatBlockComponentProps> = ({ monster, editMode }) => {
+  const [monsterBlock, setMonsterBlock] = useState<StatBlockProps>(monster);
 
   const attributeAbbreviations = {
     strength_save: 'Str',
@@ -183,12 +25,12 @@ const StatBlockComponent: React.FC<StatBlockProps> = () => {
     charisma_save: 'Cha',
   };
 
-  const formatAttributes = (attributes: any, abbreviations: any) => {
+  const formatAttributes = (attributes: number, abbreviations: string) => {
     return Object.entries(attributes)
-      .filter(([key, value]) => value !== null) // Filter out null values
+      .filter(([key, value]) => value !== null)
       .map(([key, value]) => {
-        const attributeAbbr = abbreviations[key] || key; // Use abbreviation if available
-        return `${attributeAbbr} +${value}`;
+        const attributeAbbr = abbreviations[key] || key;
+        return `${attributeAbbr} ${value >= 0 ? '+' : ''} ${value}`;
       })
       .join(', ');
   };
@@ -196,76 +38,98 @@ const StatBlockComponent: React.FC<StatBlockProps> = () => {
   const calculateModifier = (score: number) => Math.floor((score - 10) / 2);
 
   const savingThrows = {
-    strength_save: monster.strength_save !== null ? calculateModifier(monster.strength) + monster.strength_save : null,
-    dexterity_save: monster.dexterity_save !== null ? calculateModifier(monster.dexterity) + monster.dexterity_save : null,
-    constitution_save: monster.constitution_save !== null ? calculateModifier(monster.constitution) + monster.constitution_save : null,
-    intelligence_save: monster.intelligence_save !== null ? calculateModifier(monster.intelligence) + monster.intelligence_save : null,
-    wisdom_save: monster.wisdom_save !== null ? calculateModifier(monster.wisdom) + monster.wisdom_save : null,
-    charisma_save: monster.charisma_save !== null ? calculateModifier(monster.charisma) + monster.charisma_save : null,
+    strength_save: monsterBlock.strength_save !== null && monsterBlock.strength !== undefined ? calculateModifier(monsterBlock.strength) + (monsterBlock.strength_save ?? 0) : null,
+    dexterity_save: monsterBlock.dexterity_save !== null && monsterBlock.dexterity !== undefined ? calculateModifier(monsterBlock.dexterity) + (monsterBlock.dexterity_save ?? 0) : null,
+    constitution_save: monsterBlock.constitution_save !== null && monsterBlock.constitution !== undefined ? calculateModifier(monsterBlock.constitution) + (monsterBlock.constitution_save ?? 0) : null,
+    intelligence_save: monsterBlock.intelligence_save !== null && monsterBlock.intelligence !== undefined ? calculateModifier(monsterBlock.intelligence) + (monsterBlock.intelligence_save ?? 0) : null,
+    wisdom_save: monsterBlock.wisdom_save !== null && monsterBlock.wisdom !== undefined ? calculateModifier(monsterBlock.wisdom) + (monsterBlock.wisdom_save ?? 0) : null,
+    charisma_save: monsterBlock.charisma_save !== null && monsterBlock.charisma !== undefined ? calculateModifier(monsterBlock.charisma) + (monsterBlock.charisma_save ?? 0) : null,
+  };
+  const formattedSpeedText = Object.entries(monsterBlock.speed ?? {}).map(([key, value]) => `${key} ${value}`).join(', ');
+  const formattedSavingThrows = formatAttributes(savingThrows, attributeAbbreviations);
+  const formattedSkills = formatAttributes(monsterBlock.skills, {});
+  const [savingThrowsText, setsavingThrowsText] = useState<string>(formattedSavingThrows);
+  const [skillsText, setSkillsText] = useState<string>(formattedSkills);
+  const [speedText, setSpeedText] = useState<string>(formattedSpeedText);
+  const [typeText, setTypeText] = useState<string>(`${monsterBlock.size} ${monsterBlock.type}, ${monsterBlock.alignment}`);
+
+  const handleTextChange = (field: string, value: string) => {
+    if (field === 'saving_throws') setsavingThrowsText(value);
+    else if (field === 'skills') setSkillsText(value);
+    else if (field === 'type') setTypeText(value);
+    else if (field === 'speed') setSpeedText(value);
+    else return
   };
 
-  const formattedSavingThrows = formatAttributes(savingThrows, attributeAbbreviations);
-  const formattedSkills = formatAttributes(monster.skills, {});
+  const handleChange = (field: string, value: any) => {
+    setMonsterBlock((prevMonster) => ({
+      ...prevMonster,
+      [field]: value,
+    }));
+  };
+
+  useEffect(() => {
+
+  }, [editMode])
+
+  useEffect(() => {
+    setMonsterBlock(monster);
+    console.log(monsterBlock);
+  }, [monster]);
+
+
+  useEffect(() => {
+    setsavingThrowsText(formatAttributes(savingThrows, attributeAbbreviations));
+    setSkillsText(formatAttributes(monsterBlock.skills, {}));
+    setTypeText(`${monsterBlock.size} ${monsterBlock.type}, ${monsterBlock.alignment}`);
+    setSpeedText(formattedSpeedText);
+  }, [monsterBlock]);
 
   return (
-    <div className='w-[400px] lg:w-[800px] overflow-hidden'>
-      <div className='h-[5px] border-b-[1px] border-black bg-statBlockOrange' />
-      <div className='lg:columns-2 gap-5 p-6 bg-statBlockBG shadow-lg text-statBlockRed text-sm'>
-        <CreatureHeading name={monster.name} type={`${monster.size} ${monster.type}, ${monster.alignment}`} />
-        <TaperedRule />
-        <PropertyLine label='Armor Class' value={`${monster.armor_class} (${monster.armor_desc})`} />
-        <PropertyLine label='Hit Points' value={`${monster.hit_points} (${monster.hit_dice})`} />
-        <PropertyLine label='Speed' value={speedText} />
-        <TaperedRule />
+    <div className={`w-full md:w-[750px] lg:w-[950px] overflow-clip self-center ${editMode && ''}`}>
+      <div className={`h-[5px] border-b-[1px] border-black bg-statBlockOrange ${editMode && 'hidden'}`} />
+      <div className={` ${editMode ? 'md:flex flex-col gap 8 text-sm md:text-md text-dark' : 'md:columns-2 gap-5 p-6 bg-statBlockBG shadow-lg text-statBlockRed text-sm'}`}>
+        <PropertyLineString label={editMode ? 'Monster Name' : ''} value={monsterBlock.name} onChange={(value) => handleChange('name', value)} classname={'text-2xl font-bold uppercase'} editMode={editMode} />
+        <PropertyLineString label={editMode ? 'Type, size and Alignment' : ''} value={typeText} onChange={(value) => handleTextChange('type', value)} classname={'italic'} editMode={editMode} />
+        {!editMode &&
+          <TaperedRule />
+        }
+        <PropertyLineNb label='Armor Class' value={monsterBlock.armor_class} onChange={(value) => handleChange('armor_class', value)} editMode={editMode} />
+        <PropertyLineNb label='Hit Points' value={monsterBlock.hit_points} onChange={(value) => handleChange('hit_points', value)} editMode={editMode} />
+        <PropertyLineString label='Speed' value={speedText} onChange={(value) => handleTextChange('speed', value)} editMode={editMode} />
+        {!editMode &&
+          <TaperedRule />
+        }
         <AbilitiesBlock
-          strength={monster.strength}
-          dexterity={monster.dexterity}
-          constitution={monster.constitution}
-          intelligence={monster.intelligence}
-          wisdom={monster.wisdom}
-          charisma={monster.charisma}
+          strength={monsterBlock.strength}
+          dexterity={monsterBlock.dexterity}
+          constitution={monsterBlock.constitution}
+          intelligence={monsterBlock.intelligence}
+          wisdom={monsterBlock.wisdom}
+          charisma={monsterBlock.charisma}
+          handleChange={handleChange}
+          editMode={editMode}
         />
-        <TaperedRule />
-        {formattedSavingThrows && (
-          <PropertyLine label='Saving Throws' value={formattedSavingThrows} />
-        )}
-        {formattedSkills && (
-          <PropertyLine label='Skills' value={formattedSkills} />
-        )}
-        {monster.damage_vulnerabilities &&
-          <PropertyLine label='Damage Vulnerabilities' value={monster.damage_vulnerabilities} />
+        {!editMode &&
+          <TaperedRule />
         }
-        {monster.damage_resistances &&
-          <PropertyLine label='Damage Resistances' value={monster.damage_resistances} />
-        }
-        {monster.damage_immunities &&
-          <PropertyLine label='Damage Immunities' value={monster.damage_immunities} />
-        }
-        {monster.condition_immunities &&
-          <PropertyLine label='Condition Immunities' value={monster.condition_immunities} />
-        }
-        <PropertyLine label='Senses' value={monster.senses} />
-        <PropertyLine label='Languages' value={monster.languages} />
-        <PropertyLine label='Challenge' value={monster.challenge_rating} />
-        <TaperedRule />
-        {monster.special_abilities && (
-          <SpecialAbility abilities={monster.special_abilities} />
-        )}
-        {monster.actions && (
-          <Action actions={monster.actions} />
-        )}
-        {monster.bonus_actions && (
-          <Action actions={monster.bonus_actions} />
-        )}
-        {monster.reactions && (
-          <Action actions={monster.reactions} />
-        )}
-        {monster.legendary_actions && (
-          <Action actions={monster.legendary_actions} />
-        )}
-        <Description description={monster.description} />
+        <PropertyLineString label='Saving Throws' value={savingThrowsText} onChange={(value) => handleTextChange('saving_throws', value)} editMode={editMode} />
+        <PropertyLineString label='Skills' value={skillsText} onChange={(value) => handleTextChange('skills', value)} editMode={editMode} />
+        <PropertyLineString label='Damage Vulnerabilities' value={monsterBlock.damage_vulnerabilities} onChange={(value) => handleChange('damage_vulnerabilities', value)} editMode={editMode} />
+        <PropertyLineString label='Damage Resistances' value={monsterBlock.damage_resistances} onChange={(value) => handleChange('damage_resistances', value)} editMode={editMode} />
+        <PropertyLineString label='Damage Immunities' value={monsterBlock.damage_immunities} onChange={(value) => handleChange('damage_immunities', value)} editMode={editMode} />
+        <PropertyLineString label='Condition Immunities' value={monsterBlock.condition_immunities} onChange={(value) => handleChange('condition_immunities', value)} editMode={editMode} />
+        <PropertyLineString label='Senses' value={monsterBlock.senses} onChange={(value) => handleChange('senses', value)} editMode={editMode} />
+        <PropertyLineString label='Languages' value={monsterBlock.languages} onChange={(value) => handleChange('languages', value)} editMode={editMode} />
+        <PropertyLineNb label='Challenge' value={monsterBlock.cr} onChange={(value) => handleChange('challenge_rating', value)} editMode={editMode} />
+        <Action actions={monsterBlock.special_abilities} title={editMode ? 'Special Abilities' : ''} editMode={editMode} />
+        <Action actions={monsterBlock.actions} title='Actions' editMode={editMode} />
+        <Action actions={monsterBlock.bonus_actions} title='Bonus Actions' editMode={editMode} />
+        <Action actions={monsterBlock.reactions} title='Reactions' editMode={editMode} />
+        <Action actions={monsterBlock.legendary_actions} desc={monsterBlock.legendary_desc} title='Legendary Actions' editMode={editMode} />
+        <PropertyLineString label={editMode ? 'Description' : ''} value={monsterBlock.desc} editMode={editMode} onChange={(value) => handleChange('desc', value)} type='textarea' classname='italic' />
       </div>
-      <div className='h-[5px] border-t-[1px] border-black bg-statBlockOrange' />
+      <div className={`h-[5px] border-b-[1px] border-black bg-statBlockOrange ${editMode === true && 'hidden'}`} />
     </div>
   );
 };

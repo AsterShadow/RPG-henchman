@@ -14,7 +14,6 @@ const Footer = () => {
             </div>
 
             <p>Powered by AI</p>
-
         </div>
     )
 }

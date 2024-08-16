@@ -8,6 +8,8 @@ import items from '../../public/images/item-image_nobg.png';
 import triangle from '../../public/images/triangle.svg';
 import map from '../../public/images/map_nobg.png';
 import dropdown from '../../public/images/dropdown.svg';
+import back from '../../public/icons/chevron-left.svg';
+
 
 
 const images = {
@@ -21,6 +23,7 @@ const images = {
   triangle,
   map,
   dropdown,
+  back,
 };
 
 export default images;

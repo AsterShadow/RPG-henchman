@@ -35,7 +35,7 @@ const SectionComponent: React.FC<Section> = ({ index, slug, title, image, text, 
                         </Link>
                     </>
                     :
-                    <SectionDropDowns category={slug}/>
+                    <SectionDropDowns category={slug} />
                 }
 
             </div>

@@ -16,7 +16,6 @@ const Navbar = () => {
     { href: '/create/item', title: 'Item' },
     { href: '/create/character', title: 'Character' },
     { href: '/create/location', title: 'Location' },
-    // { href: '/create/one-shot', title: 'One Shot' },
   ];
 
   useEffect(() => {
@@ -33,18 +32,18 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed flex items-center justify-between flex-wrap w-full z-10 p-8 lg:gap-20 lg:justify-normal lg:backdrop-opacity-75 lg:backdrop-blur-sm">
+    <nav className="fixed flex items-center justify-between w-full z-10 py-8 px-4 lg:gap-20 lg:justify-normal lg:backdrop-opacity-75 lg:backdrop-blur-sm">
       <Link href='/'>
         <Image src={images.logo} alt="RPG-Henchman logo" />
       </Link>
 
-      <div className='hidden lg:block lg:flex lg:gap-4 text-xl font-headers'>
+      <div className='hidden lg:flex lg:gap-4 text-xl font-headers'>
         {navLinks.map((link) => (
           <Link href={link.href} key={link.title}><span>{link.title}</span></Link>
         ))}
       </div>
       <div className='block lg:hidden'>
-        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="flex items-center px-3 py-2 text-2xl font-headers">
+        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="">
           <Image src={images.menu} alt="menu icon" />
         </button>
       </div>
