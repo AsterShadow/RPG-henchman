@@ -82,7 +82,7 @@ const SectionCreateMonster = () => {
                     </div>
                     <div className={`flex flex-col gap-2 items-center lg:w-1/2`}>
                         <h1 className="text-2xl font-headers text-gold lg:text-6xl pb-4">Create Monsters</h1>
-                        <Button onClick={() => updateFlow('AIFlow')}>
+                        <Button onClick={() => updateFlow('AIFlow')} disabled>
                             With AI
                         </Button>
                         or

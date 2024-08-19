@@ -44,35 +44,35 @@ const StatBlockComponent: React.FC<StatBlockComponentProps> = ({
     strength_save:
       monsterBlock.strength_save !== null && monsterBlock.strength !== undefined
         ? calculateModifier(monsterBlock.strength) +
-          (monsterBlock.strength_save ?? 0)
+        (monsterBlock.strength_save ?? 0)
         : null,
     dexterity_save:
       monsterBlock.dexterity_save !== null &&
-      monsterBlock.dexterity !== undefined
+        monsterBlock.dexterity !== undefined
         ? calculateModifier(monsterBlock.dexterity) +
-          (monsterBlock.dexterity_save ?? 0)
+        (monsterBlock.dexterity_save ?? 0)
         : null,
     constitution_save:
       monsterBlock.constitution_save !== null &&
-      monsterBlock.constitution !== undefined
+        monsterBlock.constitution !== undefined
         ? calculateModifier(monsterBlock.constitution) +
-          (monsterBlock.constitution_save ?? 0)
+        (monsterBlock.constitution_save ?? 0)
         : null,
     intelligence_save:
       monsterBlock.intelligence_save !== null &&
-      monsterBlock.intelligence !== undefined
+        monsterBlock.intelligence !== undefined
         ? calculateModifier(monsterBlock.intelligence) +
-          (monsterBlock.intelligence_save ?? 0)
+        (monsterBlock.intelligence_save ?? 0)
         : null,
     wisdom_save:
       monsterBlock.wisdom_save !== null && monsterBlock.wisdom !== undefined
         ? calculateModifier(monsterBlock.wisdom) +
-          (monsterBlock.wisdom_save ?? 0)
+        (monsterBlock.wisdom_save ?? 0)
         : null,
     charisma_save:
       monsterBlock.charisma_save !== null && monsterBlock.charisma !== undefined
         ? calculateModifier(monsterBlock.charisma) +
-          (monsterBlock.charisma_save ?? 0)
+        (monsterBlock.charisma_save ?? 0)
         : null,
   };
   const formattedSpeedText = Object.entries(monsterBlock.speed ?? {})
@@ -106,16 +106,16 @@ const StatBlockComponent: React.FC<StatBlockComponentProps> = ({
       [field]: value,
     }));
   };
-  const handleActionChange = (actionType:string, index: number, field: string, value: string) => {
+  const handleActionChange = (actionType: string, index: number, field: string, value: string) => {
     setMonsterBlock((prevMonster) => ({
-        ...prevMonster,
-        [actionType]: prevMonster[actionType].map((action, i) => 
-            i === index ? { ...action, [field]: value } : action
-        ),
+      ...prevMonster,
+      [actionType]: prevMonster[actionType].map((action, i) =>
+        i === index ? { ...action, [field]: value } : action
+      ),
     }));
-};
+  };
 
-  useEffect(() => {}, [editMode]);
+  useEffect(() => { }, [editMode]);
 
   useEffect(() => {
     setMonsterBlock(monster);
@@ -133,21 +133,18 @@ const StatBlockComponent: React.FC<StatBlockComponentProps> = ({
 
   return (
     <div
-      className={`w-full md:w-[750px] lg:w-[950px] overflow-clip self-center ${
-        editMode && ""
-      }`}
+      className={`w-full md:w-[750px] lg:w-[950px] overflow-clip self-center ${editMode && ""
+        }`}
     >
       <div
-        className={`h-[5px] border-b-[1px] border-black bg-statBlockOrange ${
-          editMode && "hidden"
-        }`}
+        className={`h-[5px] border-b-[1px] border-black bg-statBlockOrange ${editMode && "hidden"
+          }`}
       />
       <div
-        className={` ${
-          editMode
+        className={` ${editMode
             ? "md:flex flex-col gap 8 text-sm md:text-md text-dark"
             : "md:columns-2 gap-5 p-6 bg-statBlockBG shadow-lg text-statBlockRed text-sm"
-        }`}
+          }`}
       >
         <PropertyLineString
           label={editMode ? "Monster Name" : ""}
@@ -290,9 +287,8 @@ const StatBlockComponent: React.FC<StatBlockComponentProps> = ({
         />
       </div>
       <div
-        className={`h-[5px] border-b-[1px] border-black bg-statBlockOrange ${
-          editMode === true && "hidden"
-        }`}
+        className={`h-[5px] border-b-[1px] border-black bg-statBlockOrange ${editMode === true && "hidden"
+          }`}
       />
     </div>
   );

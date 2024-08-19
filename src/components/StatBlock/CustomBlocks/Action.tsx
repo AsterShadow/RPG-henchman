@@ -27,12 +27,13 @@ const Action: React.FC<ActionsProps> = ({
     const handleBlur = () => {
       onChange(index, "desc", tempValue);
     };
+
     if (editMode) {
       return (
         <input
           type="text"
           value={value}
-          onChange={(e) => onChange(index, field, e.target.value)}
+          onChange={(e) => setTempValue(e.target.value)}
           className="p-2 rounded border border-gray-300 w-full mb-2"
           onBlur={handleBlur}
         />
@@ -60,7 +61,7 @@ const Action: React.FC<ActionsProps> = ({
         <>
           <textarea
             value={value}
-            onChange={(e) => onChange(index, field, e.target.value)}
+            onChange={(e) => setTempValue(e.target.value)}
             className="p-2 rounded border border-gray-300 w-full mb-2"
             onFocus={handleFocus}
             onBlur={handleBlur}
